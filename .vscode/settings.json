@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.ml": "ocaml",
+        "*.cpp": "cpp",
+        "stdlib.h": "c"
+    }
+}
