@@ -1,15 +1,31 @@
-CC = gcc
-EXEC = prog
+CXX = g++
+EXEC = prog.out
 
 
 SRCDIR = src 
-BINDIR = bin 
+BINDIR = bin
 OBJDIR = obj
+INCDIR = src/inc
 
 
-all:
-	$(CC) -o bin/$(EXEC) src/main.c
+all: $(EXEC)
 
 
-run:
-	./bin/prog
+run: $(EXEC)
+	./$(BINDIR)/$(EXEC)
+
+
+$(EXEC): main.o
+	$(CXX) -o $(BINDIR)/$(EXEC) $(OBJDIR)/main.o
+
+
+%.o: src/%.cpp
+	$(CXX) -I $(INCDIR) -o $(OBJDIR)/$@ -c $<
+
+
+clean:
+	rm -rf $(BINDIR)/*.out
+	rm -rf $(OBJDIR)/*.o
+
+
+

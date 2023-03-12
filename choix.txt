@@ -1,0 +1,30 @@
+
+UF, -> U, 2, 1 / F 0 1 
+UB,
+UR, 
+UL,
+BR,
+FR,
+BL,
+FL, 
+DF,
+DB,
+DR,
+DL
+
+
+#define tmp_def(E, F0, F1) template<>struct edge_traits<E>{static const Face good = F0, bad = F1;}
+tmp_def(UF, U, F);
+tmp_def(UB, U, B);
+tmp_def(UR, U, R);
+tmp_def(UL, U, L);
+tmp_def(BR, B, R);
+tmp_def(FR, F, R);
+tmp_def(BL, B, L);
+tmp_def(FL, F, L);
+tmp_def(DF, D, F);
+tmp_def(DB, D, B);
+tmp_def(DR, D, R);
+tmp_def(DL, D, L);
+#undef tmp_def
+#define edge_face(EP, EO) EO?(edge_traits<EP>::good):(edge_traits<EP>::bad)
