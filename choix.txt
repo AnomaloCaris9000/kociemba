@@ -28,3 +28,18 @@ tmp_def(DR, D, R);
 tmp_def(DL, D, L);
 #undef tmp_def
 #define edge_face(EP, EO) EO?(edge_traits<EP>::good):(edge_traits<EP>::bad)
+
+
+x x x x x x c c c x x x
+x x x x x x c c c x x x
+x x x x x x c c c x x x
+c c c c c c c c c c c c
+c c c c c c c c c c c c
+c c c c c c c c c c c c
+x x x x x x c c c x x x
+x x x x x x c c c x x x
+x x x x x x c c c x x x
+
+
+face6+3i+3j = index 
+face = (index-3i-3j)/6
