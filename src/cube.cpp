@@ -7,9 +7,9 @@ using namespace rc;
 
 
 
-Color Cube::colorAt(Face face, int row, int col) const
+Color Cube::edgeColorAt(Face face, Face face) const
 {
-    
+    return 
 }
 
 

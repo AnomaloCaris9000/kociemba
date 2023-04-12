@@ -4,24 +4,45 @@
 #include <array>
 
 
-#include "inc/cube-defs.hpp"
-
-#define println(x) std::cout << x << std::endl;
+#include "cube.hpp"
 
 
 using namespace rc;
 
 int main(int argc, char **argv)
 {
-    Color scheme[NB_FACES];
-    scheme[F] = GREEN;
-    scheme[B] = BLUE;
-    scheme[R] = RED;
-    scheme[L] = ORANGE;
-    scheme[U] = WHITE;
-    scheme[D] = YELLOW;
-
-    println(scheme[edge_face(UB, GOOD)]);
+    char c;
+    Face f; 
+    Cube cube; 
+    while(c != '!')
+    {
+        std::cout << cube << std::endl;
+        std::cin >> c; 
+        switch(c)
+        {
+            case 'F':
+                f = F;
+                break; 
+            case 'U':
+                f = U; 
+                break;
+            case 'R':
+                f = R;
+                break;
+            case 'D':
+                f = D;
+                break;
+            case 'B':
+                f = B; 
+                break;
+            case 'L':
+                f = L; 
+                break; 
+            default:
+                break; 
+        }
+        cube.turn(f);
+    } 
 
     exit(EXIT_SUCCESS);
 }

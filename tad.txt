@@ -1,0 +1,127 @@
+Abstract :
+
+Nous voulons modéliser un rubik's cube. Que peut-on faire avec ? 
+    -> Le tourner 
+    -> Le regarder 
+    -> Le résoudre (ce dernier points est plus compliqué)
+Un Rubik's cube n'a pas à être toujours de la même couleur. Certain 'stickers' pourrai être ignoré afin de résoudre
+un sous groupe. 
+
+Cube:
+    Use: 
+        Bool, Facelet, Moves
+
+    Sig:
+        Create: * -> Cube
+        colorAt: Cube*Facelet -> Color
+        turn: Cube*Moves -> Cube 
+
+    Axiom:
+        isSolved(cube.turn(cube.getSolution())) == T
+
+Moves:
+    Use:
+        Face, uint
+    Sig:
+        Nil: 
+        Push: Turn -> Moves
+        Concat: Moves*Moves -> Moves
+        Inv: Moves -> Moves
+        first: 
+        (==): Move*Move -> bool
+    Axiom:
+       bla bla bla alebre
+
+Turn:
+    Sig:
+        Turn: Face, unit -> Move
+
+
+
+Face:
+    Use:
+        Bool 
+    Sig:
+        F, R, U, ...
+        isOpposed: Face*Face -> Bool 
+
+
+
+Facelet:
+    Use:
+        Face, uint 
+    Sig:
+        Create: Face*uint -> Facelet
+        face: Facelet -> Face
+        index: Facelet -> uint
+
+Stickers: 
+    Sig:
+        Create: ...
+        at: Facelet -> Facelet
+        (*): Stickers*Stickers -> Stickers
+
+
+Scheme:
+    Sig: 
+        Create:(Face -> Color) -> Scheme
+        greys: Scheme*Facelet -> Scheme
+        unGreys: Scheme*Facelet -> Scheme
+        getColor: Facelet -> Color 
+
+
+
+EdgeO:
+    Sig: 
+        Good
+        Bad
+
+EdgeP:
+    Sig:
+        UR
+        UF
+        ...
+CornerO:
+    Sig: 
+        Good
+        Plus
+        Minus
+
+CornerP:
+    Sig:
+        UR
+        UF
+        ...
+        Create: Facelet -> placement*orientation
+
+Facelet:
+    Create: placement*orientation -> Facelet
+
+
+
+
+
+        
+
+
+Coord:
+    Create: Moves -> Coord 
+    (*): Coord*Coord -> Coord
+    epAt: Coord*EdgeP -> EdgeP
+    cpAt: Coord*CornerP -> CornerP
+    eoAt: Coord*EdgeP -> EdgeO 
+    coAt: Coord*CornerP -> CornerO
+
+Moves:
+    
+    Null: Turns -> Moves
+    Concat: Moves*Moves -> Moves
+    inv: Moves -> Moves
+
+
+Implementation : 
+
+
+type(Facelet) -> PieceP, PieceO
+PieceP, PieceO -> Face 
+Face -> Color 
