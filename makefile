@@ -15,8 +15,8 @@ run: $(EXEC)
 	./$(BINDIR)/$(EXEC)
 
 
-$(EXEC): main.o
-	$(CXX) -o $(BINDIR)/$(EXEC) $(OBJDIR)/main.o
+$(EXEC): main.o cube.o 
+	$(CXX) -o $(BINDIR)/$(EXEC) $(OBJDIR)/cube.o $(OBJDIR)/main.o 
 
 
 %.o: src/%.cpp

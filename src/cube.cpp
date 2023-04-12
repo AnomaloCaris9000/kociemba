@@ -1,20 +1,33 @@
-#include "inc/cube.hpp" 
+#include "inc/cube.hpp"
 
 
 using namespace rc;
 
+ Cube::Cube()
+ {
+
+ }
 
 
+ Color Cube::colorAt(Face, char, char) const
+ {
+    return RED;
+ }
+
+ Cube& Cube::turn(Face)
+ {
+    return *this; 
+ }
 
 
-Color Cube::edgeColorAt(Face face, Face face) const
+bool Cube::isSolved() const 
 {
-    return 
+    return false;
 }
+
 
 
 std::ostream& operator << (std::ostream &flux, const rc::Cube& cube)
 {
-
-    return flux; 
+    return flux;
 }
