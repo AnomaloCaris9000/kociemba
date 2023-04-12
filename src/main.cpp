@@ -4,7 +4,7 @@
 #include <array>
 
 
-#include "cube.hpp"
+#include "inc/cube.hpp"
 
 
 using namespace rc;
