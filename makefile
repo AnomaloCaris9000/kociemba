@@ -1,3 +1,2 @@
 all:
-	g++ -o prog main.cpp
-	./prog
+	g++ -o prog main.cpp -g
