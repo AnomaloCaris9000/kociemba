@@ -10,17 +10,34 @@ enum Face: byte_t
     U, D, F, B, L, R // the order is not chosen randomly
 };
 
-enum Edge: byte_t
+/// @brief Piece Placement
+enum PieceP: byte_t
 {
     UF, UB, UL, UR, // U layer
     FL, FR, BL, BR, // E layer
-    DF, DB, DL, DR  // D layer
-};
+    DF, DB, DL, DR, // D layer
 
-enum Corner: byte_t
-{
     UFL, UFR, UBL, UBR, // U layer
     DFL, DFR, DBL, DBR  // D layer
+};
+
+/// @brief Piece Orientation
+enum PieceO: byte_t
+{
+    GOOD, BAD, BAD0
+};
+
+struct Cubie
+{
+    PieceP p;
+    PieceO o;
+};
+
+struct Facelet
+{
+    Face f;
+    byte_t i;
+    byte_t j;
 };
 
 } // namespace rc
