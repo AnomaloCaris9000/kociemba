@@ -1,6 +1,9 @@
 #ifndef CUBE_DEF_HPP
 #define CUBE_DEF_HPP
 
+#define NB_EDGES 12
+#define NB_CORNERS 8
+
 typedef unsigned char byte_t;
 
 namespace rc { 

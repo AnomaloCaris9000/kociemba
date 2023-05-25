@@ -5,15 +5,14 @@
             "includePath": [
                 "${workspaceFolder}/**"
             ],
-            "defines": [],
             "macFrameworkPath": [
                 "/System/Library/Frameworks",
                 "/Library/Frameworks"
             ],
+            "intelliSenseMode": "macos-gcc-x64",
+            "compilerPath": "/usr/bin/gcc",
             "cStandard": "c17",
-            "cppStandard": "c++14",
-            "intelliSenseMode": "${default}",
-            "compilerPath": "/usr/bin/gcc"
+            "cppStandard": "c++14"
         }
     ],
     "version": 4

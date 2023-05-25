@@ -1,0 +1,14 @@
+{
+    "makefile.buildBeforeLaunch": true,
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "${workspaceFolder}",
+            "binaryPath": "${workspaceFolder}/main",
+            "binaryArgs": []
+        }
+    ],
+    "makefile.configurations": [
+        
+    ],
+    "makefile.makefilePath": "${workspaceRoot}/Makefile",
+}

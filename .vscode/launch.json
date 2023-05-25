@@ -8,13 +8,17 @@
             "name": "(lldb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/prog",
-            "args": ["1", "2", "ect"],
-            "stopAtEntry": false,
+            "program": "${workspaceFolder}/main",
+            "args": [],
+            "stopAtEntry": true,
             "cwd": "${fileDirname}",
             "environment": [],
             "externalConsole": false,
+            "logging": {
+                "trace": true,
+                "traceResponse": true,
+            },
             "MIMode": "lldb"
-        }         
+        }
     ]
 }
