@@ -23,9 +23,9 @@ struct Cubie {
 class CubieLevel
 {
     private:
-        Coord m_coord;
+        Coord &m_coord;
     public:
-        // TODO
+        CubieLevel(Coord &);
 };
 
 } // namespace rc 

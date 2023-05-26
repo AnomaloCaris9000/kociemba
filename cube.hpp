@@ -15,7 +15,9 @@ namespace rc {
 class Cube 
 {
     private:
-        Facelet m_facelet;
+        FaceletLevel m_facelets;
+        CubieLevel m_cubies; 
+        Coord m_coord, m_moveTable[NB_FACE]; 
         Color m_scheme[NB_FACE];
     public:
         Cube(); 

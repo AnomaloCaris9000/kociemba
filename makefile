@@ -1,7 +1,7 @@
 CXX =g++
 EXEC =main # fuck le debugger 
 CFLAGS = -Wall 
-MAIN_OBJ =cube.o main.o
+MAIN_OBJ =coord.o cubie.o facelet.o cube.o main.o
 
 
 # debug mode 

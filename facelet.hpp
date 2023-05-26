@@ -11,7 +11,13 @@ struct Facelet {
     byte_t i, j; 
 };
 
-class FaceletLevel;
+class FaceletLevel
+{
+    private:
+        CubieLevel &m_cubies; 
+    public:
+        FaceletLevel(CubieLevel &);
+};
 
 } // namespace rc 
 

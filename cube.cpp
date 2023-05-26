@@ -5,20 +5,24 @@
 
 namespace rc {
 
-Cube::Cube()
-{
+Cube::Cube():
+    m_coord(),
+    m_cubies(m_coord),
+    m_facelets(m_cubies)
+{ 
+
+    // scheme def
     m_scheme[F] = GREEN; 
     m_scheme[R] = RED; 
     m_scheme[U] = WHITE; 
     m_scheme[B] = BLUE; 
     m_scheme[L] = ORANGE; 
-    m_scheme[D] = YELLOW; 
+    m_scheme[D] = YELLOW;
 }
 
 Cube& Cube::turn(Face f)
 {
-    (void)f;
-    // TODO 
+    m_coord *= m_moveTable[f]; 
     return *this;
 }
 
