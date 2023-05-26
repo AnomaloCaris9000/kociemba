@@ -1,31 +1,58 @@
 #include "coord.hpp"
 #include <stdlib.h>
+#include <assert.h>
 
 namespace rc {
 
 
 Coord::Coord()
 {
-    // TODO:
+    for(byte_t i = 0; i < NB_EDGES; ++i)
+    {
+        if(i < NB_CORNERS) {
+            cornerP[i] = 0;
+            cornerO[i] = 0;  
+        }
+        edgeP[i] = i;
+        edgeO[i] = i;
+    }
 }
 
-Cubie Coord::operator () (Cubie const c) const
-{
-    (void)c;
-    return {(PieceP)0, (PieceO)0};
+EdgeO Coord::eo(EdgeP ep) const {
+    return (EdgeO)edgeO[ep]; 
+}
+
+CornerO Coord::co(CornerP cp) const {
+    return (CornerO)edgeO[cp]; 
+}
+
+EdgeP Coord::ep(EdgeP ep) const {
+    return (EdgeP)edgeP[ep]; 
+}
+
+CornerP Coord::cp(CornerP ep) const {
+    return (CornerP)edgeO[ep]; 
 }
 
 Coord& Coord::operator *= (Coord const other)
 {
-    (void)other;
+    for(int i = 0; i < NB_EDGES; ++i)
+    {
+        if(i < NB_CORNERS) {
+            cornerP[i] = other.cornerP[cornerP[i]];
+            cornerO[i] = other.cornerO[cornerP[i]];
+        }
+        edgeP[i] = other.edgeP[edgeP[i]];
+        edgeO[i] = other.edgeO[edgeP[i]];
+    }
     return *this;
 }
 
 Coord operator * (Coord const c0, Coord const c1)
 {
-    (void)c0;
-    (void)c1;
-    return (Coord)(*(Coord*)NULL); 
+    Coord result = c0;
+    result *= c1;
+    return result; 
 }
 
 } // namespace rc

@@ -9,7 +9,7 @@
                 "/System/Library/Frameworks",
                 "/Library/Frameworks"
             ],
-            "intelliSenseMode": "macos-gcc-x64",
+            "intelliSenseMode": "${default}",
             "compilerPath": "/usr/bin/gcc",
             "cStandard": "c17",
             "cppStandard": "c++14"

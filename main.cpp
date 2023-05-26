@@ -1,27 +1,40 @@
 #include <stdlib.h>
 #include <iostream>
+#include <map>
 
-#include "coord.hpp"
+#include "cube.hpp"
 
 
 #define print(x) std::cout << x << std::endl;
 
+using namespace rc;
+
+void testCube(); 
 
 int main(int argc, char **argv)
 {
-    print("Hello World!");
-    for(int i = 0; i < argc; i++)
-    {
-        print(argv[i]);
-    }
-
-    rc::Coord c;
-    c *= c;
-
-    for(int i = 0; i < 10; i++)
-    {
-        print(c.m_cornerO[i]);
-    }
-
+    testCube();
+    print("Test ended!"); 
     exit(EXIT_SUCCESS); 
+}
+
+void testCube() {
+    Cube c; 
+    char m; 
+    std::map<char, Face> moveMap;
+    moveMap['f'] = F; 
+    moveMap['r'] = R;
+    moveMap['u'] = U;  
+    moveMap['l'] = L;  
+    moveMap['d'] = D;
+    moveMap['b'] = B;   
+
+    m = '\0';
+    while(!c.isSolved())
+    {
+        print(c);  
+        std::cin >> m;
+        if(m == '!') break;
+        else c.turn(moveMap.at(m)); 
+    }
 }
