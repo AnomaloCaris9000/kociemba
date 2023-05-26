@@ -11,4 +11,12 @@
         
     ],
     "makefile.makefilePath": "${workspaceRoot}/Makefile",
+    "files.associations": {
+        "*.ml": "ocaml",
+        "*.cpp": "cpp",
+        "*.c": "c",
+        "*.s": "asm-markdown-codeblock",
+        "*.h": "c",
+        "random": "cpp"
+    },
 }

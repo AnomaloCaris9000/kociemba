@@ -3,6 +3,7 @@
 
 #define NB_EDGES 12
 #define NB_CORNERS 8
+#define NB_FACE 6
 
 typedef unsigned char byte_t;
 
@@ -13,9 +14,14 @@ enum Face: byte_t
     U, D, F, B, L, R // the order is not chosen randomly
 };
 
-enum Color 
+enum Color: const char
 {
-    WHITE
+    WHITE = 'w',
+    GREEN = 'g',
+    BLUE = 'b',
+    YELLOW = 'y',
+    ORANGE = 'o',
+    RED = 'r'
 };
 
 /// @brief Piece Placement
@@ -47,13 +53,6 @@ enum CornerO: byte_t
 enum PieceType: byte_t
 {
     CORNER, EDGE, CENTER
-};
-
-struct Cubie
-{
-    PieceType type;
-    byte_t p; // placement
-    byte_t c; // orientation
 };
 
 } // namespace rc

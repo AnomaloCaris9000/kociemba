@@ -2,6 +2,7 @@
 #define FACELET_HPP
 
 #include "cube-defs.hpp"
+#include "cubie.hpp"
 
 namespace rc {
 

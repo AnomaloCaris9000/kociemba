@@ -15,7 +15,8 @@ namespace rc {
 class Cube 
 {
     private:
-        Facelet m_facelet; 
+        Facelet m_facelet;
+        Color m_scheme[NB_FACE];
     public:
         Cube(); 
         Color at(Face f, byte_t i, byte_t j) const;

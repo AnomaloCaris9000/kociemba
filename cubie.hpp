@@ -3,12 +3,10 @@
 
 
 #include "cube-defs.hpp"
+#include "coord.hpp"
 
 
 namespace rc {
-
-
-struct Coord; // opaque decl of coord
 
 
 struct Cubie {
@@ -27,7 +25,7 @@ class CubieLevel
     private:
         Coord m_coord;
     public:
-
+        // TODO
 };
 
 } // namespace rc 
