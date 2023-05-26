@@ -1,7 +1,13 @@
 CXX =g++
 EXEC =main # fuck le debugger 
-CFLAGS = -Wall 
-MAIN_OBJ =coord.o cubie.o facelet.o cube.o main.o
+MAIN_OBJ = obj/coord.o obj/cubie.o obj/facelet.o obj/cube.o obj/main.o
+
+OBJDIR = obj
+SRCDIR = src
+INCDIR = src/inc 
+
+CFLAGS = -Wall
+LDFLAGS = -I $(INCDIR)
 
 
 # debug mode 
@@ -26,13 +32,17 @@ ifeq ($(DEBUG), yes)
 else
 	@echo "Compilation en mode release"
 endif
-	$(CXX) -o $(EXEC) $(MAIN_OBJ) $(CFLAGS)
+	@ $(CXX) -o $(EXEC) $(MAIN_OBJ) $(CFLAGS)
 
 # object pattern 
-%.o: %.cpp
-	@$(CXX) -c $< -o $@
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp
+	@ echo +$@
+	@ $(CXX) -c $< -o $@ $(LDFLAGS)
 
 clean:
 	@echo "Suppression des fichiers objets et de l'executable"
 	@rm -f $(EXEC)
-	@rm -f *.o
+	@rm -f $(OBJDIR)/*.o
+
+
+$(SRCDIR)/%.cpp: $(INCDIR)/%.hpp
