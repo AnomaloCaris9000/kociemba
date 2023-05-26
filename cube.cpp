@@ -28,7 +28,7 @@ Cube& Cube::turn(Face f)
 
 Color Cube::at(Face f, byte_t i, byte_t j) const
 {
-    return m_scheme[f];  
+    return m_scheme[m_facelets.at(Facelet(f, i, j)).face];   
 }
 
 bool Cube::isSolved() const 

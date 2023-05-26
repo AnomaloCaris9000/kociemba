@@ -17,6 +17,12 @@
         "*.c": "c",
         "*.s": "asm-markdown-codeblock",
         "*.h": "c",
-        "random": "cpp"
+        "random": "cpp",
+        "array": "cpp",
+        "map": "cpp",
+        "string": "cpp",
+        "string_view": "cpp",
+        "unordered_map": "cpp",
+        "vector": "cpp"
     },
 }
