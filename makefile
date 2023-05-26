@@ -1,5 +1,5 @@
 CXX =g++
-EXEC =main # fuck le debugger 
+EXEC =prog.out # fuck le debugger 
 MAIN_OBJ = obj/coord.o obj/cubie.o obj/facelet.o obj/cube.o obj/main.o
 
 OBJDIR = obj
