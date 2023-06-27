@@ -61,6 +61,11 @@ enum PieceType: byte_t
  */
 class Facelet {
 
+    private:
+        Face m_face;
+        byte_t m_row;
+        byte_t m_col;
+
     public:
 
         /**
@@ -69,29 +74,41 @@ class Facelet {
          * @param i The row.
          * @param j The column.
          */
-        Facelet(Face f, byte_t i, byte_t j);
+        Facelet(Face f, byte_t i, byte_t j):
+            m_face(f), m_row(i%3), m_col(j%3)
+        {}
+
+        Facelet() // default constructor
+        : m_face(U), m_row(0), m_col(0) 
+        {}
 
        /**
         * @brief Row getter 
         * @return 0, 1 or 2 
         */
-       byte_t row() const; 
+       inline byte_t row() const {return m_row;}
 
        /**
         * @brief Column getter 
         * @return 0, 1 or 2
         */
-       byte_t col() const; 
+       inline byte_t col() const {return m_col;}
 
        /**
         * @brief Face getter
         * @return F, R, U, B, L or D 
         */
-       Face face() const;  
+       inline Face face() const {return m_face;}
 };
 
 
 class Cubie {
+
+    private:
+        PieceType m_type;
+        byte_t m_placement;
+        byte_t m_orientation;
+
     public:
         /**
          * @brief Construct a new Cubie object
@@ -100,13 +117,21 @@ class Cubie {
          * @param p Placement
          * @param o Orientation.
          */
-        Cubie(PieceType type, byte_t p, byte_t o);
+        Cubie(PieceType type, byte_t p, byte_t o):
+            m_type(type), 
+            m_placement(p%(type==EDGE?NB_EDGES:NB_CORNERS)), 
+            m_orientation(o%(type==EDGE?2:3))
+        {}
+
+        Cubie(): // default constructor
+            m_type(CENTER), m_placement(0), m_orientation(0)
+        {}
 
         /**
          * @brief Make a facelet into a cubie. 
-         * @param f 
+         * @param f A facelet. 
          */
-        Cubie(Facelet f);
+        Cubie(Facelet const &f);
 
         /**
          * @note Works only if the facelet is not a center. 
@@ -118,7 +143,7 @@ class Cubie {
          * @brief Piece's type getter
          * @return Edge, Corner or center
          */
-        PieceType type() const;
+        inline PieceType type() const {return m_type;}
 
         /**
          * @brief Orientation getter.
@@ -127,14 +152,14 @@ class Cubie {
          * @note type = Corner => orientation in 0, 1, 2
          * @note type = Edge => orientation in 0, 1 
          */
-        byte_t orientation() const;
+        inline byte_t orientation() const {return m_orientation;}
 
         /**
          * @brief Placement getter.
          * @return Number in 0..23
          * @note If type = center, then placement is the correspounding facelement.face. 
          */
-        byte_t placement() const;
+        inline byte_t placement() const {return m_placement;}
 };
 
 } // namespace rc

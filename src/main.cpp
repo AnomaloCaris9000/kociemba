@@ -13,28 +13,25 @@ void testCube();
 
 int main(int argc, char **argv)
 {
-    testCube();
-    print("Test ended!"); 
-    exit(EXIT_SUCCESS); 
+    Facelet f = Facelet(U, 0, 0);
+    Cubie c = Cubie(f);
 }
 
-void testCube() {
+void testCube()
+{
     Cube c; 
-    char m; 
+    char moves[] = "FRULBD"; 
     std::map<char, Face> moveMap;
-    moveMap['f'] = F; 
-    moveMap['r'] = R;
-    moveMap['u'] = U;  
-    moveMap['l'] = L;  
-    moveMap['d'] = D;
-    moveMap['b'] = B;   
-
-    m = '\0';
-    while(!c.isSolved())
+    moveMap['F'] = F; 
+    moveMap['R'] = R;
+    moveMap['U'] = U;  
+    moveMap['L'] = L; 
+    moveMap['B'] = D;
+    moveMap['D'] = B; 
+    
+    char *i = &moves[0];
+    while(*(i++) != '/0')
     {
-        print(c);  
-        std::cin >> m;
-        if(m == '!') break;
-        else c.turn(moveMap.at(m)); 
+        c.turn(moveMap.at(*i)); 
     }
 }
