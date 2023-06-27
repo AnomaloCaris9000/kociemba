@@ -1,4 +1,6 @@
-CXX =g++
+# USE CMAKE INSTEAD
+
+CXX =clang++
 EXEC =prog.out # fuck le debugger 
 MAIN_OBJ = obj/cube-defs.o obj/coord.o obj/cube.o obj/main.o
 
