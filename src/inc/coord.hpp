@@ -1,3 +1,14 @@
+/**
+ * @file coord.hpp
+ * @author your name (you@domain.com)
+ * @brief 
+ * @version 0.1
+ * @date 2023-06-27
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
+
 #ifndef CORD_HPP
 #define CORD_HPP
 
@@ -13,7 +24,6 @@ namespace rc {
 struct Coord
 {
     // unprotected data members
-    // TODO: optimize
     byte_t edgeP[NB_EDGES];
     byte_t cornerP[NB_CORNERS];
     byte_t edgeO[NB_CORNERS];
@@ -24,7 +34,6 @@ struct Coord
      */
     Coord();
 
-    // TODO: maybe make inline
     /// @brief Edge Orientation getter 
     EdgeO eo(EdgeP ep) const;
     /// @brief Corner Orientation getter 
@@ -33,6 +42,8 @@ struct Coord
     EdgeP ep(EdgeP ep) const;
     /// @brief Edge Placement getter 
     CornerP cp(CornerP cp) const;
+
+    Cubie at(Cubie const&) const; 
 
     /**
      * @brief Compose the current Coord with another one

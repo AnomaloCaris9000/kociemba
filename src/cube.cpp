@@ -5,10 +5,7 @@
 
 namespace rc {
 
-Cube::Cube():
-    m_coord(),
-    m_cubies(m_coord),
-    m_facelets(m_cubies)
+Cube::Cube()
 { 
 
     // scheme def
@@ -22,13 +19,20 @@ Cube::Cube():
 
 Cube& Cube::turn(Face f)
 {
-    m_coord *= m_moveTable[f]; 
+    // TODO
+    (void)f;
     return *this;
 }
 
 Color Cube::at(Face f, byte_t i, byte_t j) const
 {
-    return m_scheme[m_facelets.at(Facelet(f, i, j)).face];   
+    // f, i, j -> Facelet
+    // Facelet -> Cubie
+    // Cubie*Coord -> Cubie'
+    // Cubie' -> Facelet'
+    // Facelet' -> face 
+    // face -> color 
+    return m_scheme[((Facelet)m_coord.at(Cubie(Facelet(f, i, j)))).face()]; 
 }
 
 bool Cube::isSolved() const 

@@ -1,9 +1,7 @@
 #ifndef CUBE_HPP
 #define CUBE_HPP
 
-
-#include "cube-defs.hpp"
-#include "facelet.hpp"
+#include "coord.hpp"
 
 #include <iostream>
 
@@ -15,12 +13,15 @@ namespace rc {
 class Cube 
 {
     private:
-        FaceletLevel m_facelets;
-        CubieLevel m_cubies; 
-        Coord m_coord, m_moveTable[NB_FACE]; 
+        Coord m_coord;
+        Face m_moveTable[NB_FACE]; 
         Color m_scheme[NB_FACE];
+
     public:
+
         Cube(); 
+
+
         Color at(Face f, byte_t i, byte_t j) const;
         Cube& turn(Face f); 
         bool isSolved() const; 

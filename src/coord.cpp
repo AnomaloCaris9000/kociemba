@@ -34,6 +34,12 @@ CornerP Coord::cp(CornerP ep) const {
     return (CornerP)edgeO[ep]; 
 }
 
+Cubie Coord::at(Cubie const& c) const 
+{
+    // TODO
+    return Cubie(EDGE, 0, 0); 
+}
+
 Coord& Coord::operator *= (Coord const other)
 {
     for(int i = 0; i < NB_EDGES; ++i)
