@@ -10,11 +10,11 @@ Coord::Coord()
     for(byte_t i = 0; i < NB_EDGES; ++i)
     {
         if(i < NB_CORNERS) {
-            cornerP[i] = 0;
+            cornerP[i] = i;
             cornerO[i] = 0;  
         }
         edgeP[i] = i;
-        edgeO[i] = i;
+        edgeO[i] = 0;
     }
 }
 
@@ -36,8 +36,14 @@ CornerP Coord::cp(CornerP ep) const {
 
 Cubie Coord::at(Cubie const& c) const 
 {
-    // TODO
-    return Cubie(EDGE, 0, 0); 
+    if(c.type() == EDGE) {
+        return Cubie(c.type(), edgeP[c.placement()], c.orientation()+edgeO[c.placement()]);
+    }
+    else if(c.type() == CORNER) {
+        return Cubie(c.type(), cornerP[c.placement()], c.orientation()+cornerO[c.placement()]);
+    } else { // En cas de centre, vous êtes invité à ne rien faire
+        return c;
+    }
 }
 
 Coord& Coord::operator *= (Coord const other)
@@ -46,10 +52,10 @@ Coord& Coord::operator *= (Coord const other)
     {
         if(i < NB_CORNERS) {
             cornerP[i] = other.cornerP[cornerP[i]];
-            cornerO[i] = other.cornerO[cornerP[i]];
+            cornerO[i] += other.cornerO[cornerP[i]];
         }
         edgeP[i] = other.edgeP[edgeP[i]];
-        edgeO[i] = other.edgeO[edgeP[i]];
+        edgeO[i] += other.edgeO[edgeP[i]];
     }
     return *this;
 }

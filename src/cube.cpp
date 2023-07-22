@@ -6,8 +6,7 @@
 namespace rc {
 
 Cube::Cube()
-{ 
-
+{
     // scheme def
     m_scheme[F] = GREEN; 
     m_scheme[R] = RED; 
@@ -15,12 +14,13 @@ Cube::Cube()
     m_scheme[B] = BLUE; 
     m_scheme[L] = ORANGE; 
     m_scheme[D] = YELLOW;
+
+    // move table def
 }
 
 Cube& Cube::turn(Face f)
 {
-    // TODO
-    (void)f;
+    m_coord *= m_coordTable[f];
     return *this;
 }
 

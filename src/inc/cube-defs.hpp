@@ -5,6 +5,8 @@
 #define NB_CORNERS 8
 #define NB_FACE 6
 
+#include <iostream> // for basic printing
+
 typedef unsigned char byte_t;
 
 namespace rc { 
@@ -52,7 +54,7 @@ enum CornerO: byte_t
 
 enum PieceType: byte_t
 {
-    CORNER, EDGE, CENTER
+    CENTER, EDGE, CORNER // dans l'ordre du nombre d'orientation possible
 };
 
 /**
@@ -82,34 +84,42 @@ class Facelet {
         : m_face(U), m_row(0), m_col(0) 
         {}
 
-       /**
+        /**
         * @brief Row getter 
         * @return 0, 1 or 2 
         */
-       inline byte_t row() const {return m_row;}
+        inline byte_t row() const {return m_row;};
 
-       /**
+        /**
         * @brief Column getter 
         * @return 0, 1 or 2
         */
-       inline byte_t col() const {return m_col;}
+        inline byte_t col() const {return m_col;}
 
-       /**
+        /**
         * @brief Face getter
         * @return F, R, U, B, L or D 
         */
-       inline Face face() const {return m_face;}
+        inline Face face() const {return m_face;}
+
+        bool operator == (Facelet const &f) const
+        {
+            return m_face == f.m_face && m_row == f.m_row && m_col == f.m_col;
+        }
+
 };
 
 
 class Cubie {
 
     private:
+    
         PieceType m_type;
         byte_t m_placement;
         byte_t m_orientation;
 
     public:
+
         /**
          * @brief Construct a new Cubie object
          * 
@@ -160,8 +170,26 @@ class Cubie {
          * @note If type = center, then placement is the correspounding facelement.face. 
          */
         inline byte_t placement() const {return m_placement;}
+
+        bool operator == (Cubie const &c) const
+        {
+            return m_type == c.m_type && m_placement == c.m_placement && m_orientation == c.m_orientation;
+        }
 };
 
 } // namespace rc
+
+std::ostream& operator << (std::ostream &os, rc::Face const &f);
+
+std::ostream& operator << (std::ostream &os, rc::PieceType const &c);
+
+std::ostream& operator << (std::ostream &os, rc::EdgeP const &c);
+std::ostream& operator << (std::ostream &os, rc::CornerP const &c);
+
+std::ostream& operator << (std::ostream &os, rc::EdgeO const &c);
+std::ostream& operator << (std::ostream &os, rc::CornerO const &c);
+
+std::ostream& operator << (std::ostream &os, rc::Facelet const &f);
+std::ostream& operator << (std::ostream &os, rc::Cubie const &c);
 
 #endif

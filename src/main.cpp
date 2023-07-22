@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <iostream>
+#include <assert.h>
 #include <map>
 
 #include "cube.hpp"
@@ -9,12 +10,24 @@
 
 using namespace rc;
 
-void testCube(); 
+void testCube();
 
 int main(int argc, char **argv)
 {
-    Facelet f = Facelet(U, 0, 0);
-    Cubie c = Cubie(f);
+    Coord coord;
+    for(int i = 0; i < 6; i++)
+    {
+        for(int j = 0; j < 3; j++) 
+        {
+            for(int k = 0; k < 3; k++)
+            {
+                Facelet f((Face)i, j, k);
+                Cubie c(f); 
+                if(c.type() == EDGE) std::cout << c << " -> " << coord.at(c) << std::endl;
+            }
+        }
+    }
+    testCube();
 }
 
 void testCube()
@@ -29,9 +42,11 @@ void testCube()
     moveMap['B'] = D;
     moveMap['D'] = B; 
     
-    char *i = &moves[0];
-    while(*(i++) != '/0')
+    int i = 0;
+    while(i < 6)
     {
-        c.turn(moveMap.at(*i)); 
+        print(c);
+        c.turn(moveMap.at(moves[i]));
+        i++;
     }
 }

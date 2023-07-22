@@ -3,9 +3,8 @@
         {
             "type": "cppbuild",
             "label": "C/C++: g++ build active file",
-            "command": "make",
+            "command": "build/cmake",
             "args": [
-                "DEBUG=yes"
             ],
             "options": {
                 "cwd": "${fileDirname}"

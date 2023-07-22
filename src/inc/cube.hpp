@@ -16,7 +16,7 @@ class Cube
         Coord m_coord;
         Face m_moveTable[NB_FACE]; 
         Color m_scheme[NB_FACE];
-
+        Coord m_coordTable[NB_FACE];
     public:
 
         Cube(); 
