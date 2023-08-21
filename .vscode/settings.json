@@ -89,6 +89,8 @@
         "__functional_base": "cpp",
         "functional": "cpp",
         "iterator": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "__assert": "cpp",
+        "__availability": "cpp"
     },
 }

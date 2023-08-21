@@ -24,10 +24,10 @@ namespace rc {
 struct Coord
 {
     // unprotected data members
-    byte_t edgeP[NB_EDGES];
-    byte_t cornerP[NB_CORNERS];
-    byte_t edgeO[NB_CORNERS];
-    byte_t cornerO[NB_CORNERS];
+    std::array<byte_t, NB_EDGES> edgeP;
+    std::array<byte_t, NB_CORNERS> cornerP;
+    std::array<byte_t, NB_EDGES> edgeO;
+    std::array<byte_t, NB_CORNERS> cornerO;
 
     /**
      * @brief Construct a new Coord object which is Identity by default.
@@ -51,6 +51,8 @@ struct Coord
      * @return The current instence. 
      */
     Coord& operator *= (Coord const other);
+
+    template <Face f> static Coord make(); 
 };
 
 /**

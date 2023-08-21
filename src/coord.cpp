@@ -7,7 +7,7 @@ namespace rc {
 
 Coord::Coord()
 {
-    for(byte_t i = 0; i < NB_EDGES; ++i)
+    for(byte_t i = 0; i < NB_EDGES; i++)
     {
         if(i < NB_CORNERS) {
             cornerP[i] = i;
@@ -19,19 +19,19 @@ Coord::Coord()
 }
 
 EdgeO Coord::eo(EdgeP ep) const {
-    return (EdgeO)edgeO[ep]; 
+    return (EdgeO)(edgeO[ep]%2); 
 }
 
 CornerO Coord::co(CornerP cp) const {
-    return (CornerO)edgeO[cp]; 
+    return (CornerO)(cornerO[cp]%3); 
 }
 
 EdgeP Coord::ep(EdgeP ep) const {
     return (EdgeP)edgeP[ep]; 
 }
 
-CornerP Coord::cp(CornerP ep) const {
-    return (CornerP)edgeO[ep]; 
+CornerP Coord::cp(CornerP cp) const {
+    return (CornerP)cornerP[cp]; 
 }
 
 Cubie Coord::at(Cubie const& c) const 
@@ -48,7 +48,7 @@ Cubie Coord::at(Cubie const& c) const
 
 Coord& Coord::operator *= (Coord const other)
 {
-    for(int i = 0; i < NB_EDGES; ++i)
+    for(int i = 0; i < NB_EDGES; i++)
     {
         if(i < NB_CORNERS) {
             cornerP[i] = other.cornerP[cornerP[i]];
@@ -66,5 +66,66 @@ Coord operator * (Coord const c0, Coord const c1)
     result *= c1;
     return result; 
 }
+
+void cycle4EC(Coord &coord, std::array<EdgeP, 4> ep, std::array<CornerP, 4> cp, std::array<int, 4> co, bool switchEdges)
+{
+    int next;
+
+    for(int i = 0; i < 4; i++) {
+        if(i < 3)
+        {
+            std::swap(coord.edgeP[ep[i]], coord.edgeP[ep[i+1]]); 
+            std::swap(coord.cornerP[cp[i]], coord.cornerP[cp[i+1]]); 
+        }
+        if(switchEdges) coord.edgeO[ep[i]] = 1;
+        coord.cornerO[cp[i]] = co[i];
+    }
+} 
+
+template <>
+Coord Coord::make<F>()
+{
+    Coord c = Coord(); 
+    cycle4EC(c, {FL, DF, FR, UF}, {DFL, DFR, UFR, UFL}, {2, 1, 2, 1}, true);
+    return c; 
+}
+
+template <>
+Coord Coord::make<R>()
+{
+    Coord c = Coord(); 
+    cycle4EC(c, {DR, BR, UR, FR}, {DBR, UBR, UFR, DFR}, {1, 2, 1, 2}, false);
+    return c;
+}
+
+template <>
+Coord Coord::make<U>()
+{
+    Coord c = Coord(); 
+    cycle4EC(c, {UB, UL, UF, UR}, {UBL, UFL, UFR, UBR}, {0, 0, 0, 0}, false);
+    return c;
+}
+template <>
+Coord Coord::make<D>()
+{
+    Coord c = Coord(); ;
+    cycle4EC(c, {DB, DR, DF, DL}, {DFL, DBL, DBR, DFR}, {0, 0, 0, 0}, false);
+    return c;
+}
+template <>
+Coord Coord::make<B>()
+{
+    Coord c = Coord(); ;
+    cycle4EC(c, {UB, BR, DB, BL}, {UBL, UBR, DBR, DBL}, {2, 1, 2, 1}, true);
+    return c;
+}
+template <>
+Coord Coord::make<L>()
+{
+    Coord c;
+    cycle4EC(c, {UL, BL, DL, FL}, {UFL, UBL, DBL, DFL}, {2, 1, 2, 1}, false);
+    return c;
+}
+
 
 } // namespace rc

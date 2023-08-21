@@ -15,12 +15,17 @@ Cube::Cube()
     m_scheme[L] = ORANGE; 
     m_scheme[D] = YELLOW;
 
-    // move table def
+    m_coordTable[F] = Coord::make<F>(); 
+    m_coordTable[R] = Coord::make<R>(); 
+    m_coordTable[U] = Coord::make<U>(); 
+    m_coordTable[B] = Coord::make<B>(); 
+    m_coordTable[L] = Coord::make<L>(); 
+    m_coordTable[D] = Coord::make<D>(); 
 }
 
 Cube& Cube::turn(Face f)
 {
-    m_coord *= m_coordTable[f];
+    m_coord *= m_coordTable[f]; 
     return *this;
 }
 

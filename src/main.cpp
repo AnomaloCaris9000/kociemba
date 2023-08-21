@@ -3,6 +3,7 @@
 #include <assert.h>
 #include <map>
 
+#include "app.hpp"
 #include "cube.hpp"
 
 
@@ -12,27 +13,19 @@ using namespace rc;
 
 void testCube();
 
-int main(int argc, char **argv)
+int main()
 {
-    Coord coord;
-    for(int i = 0; i < 6; i++)
-    {
-        for(int j = 0; j < 3; j++) 
-        {
-            for(int k = 0; k < 3; k++)
-            {
-                Facelet f((Face)i, j, k);
-                Cubie c(f); 
-                if(c.type() == EDGE) std::cout << c << " -> " << coord.at(c) << std::endl;
-            }
-        }
-    }
-    testCube();
+    App app = App();
+    app.launchLoop();
+    // delete app
+    return 0;
 }
 
 void testCube()
 {
     Cube c; 
+    print(c); 
+
     char moves[] = "FRULBD"; 
     std::map<char, Face> moveMap;
     moveMap['F'] = F; 
@@ -43,10 +36,11 @@ void testCube()
     moveMap['D'] = B; 
     
     int i = 0;
-    while(i < 6)
+    while(i < 0)
     {
-        print(c);
+        print("Move" << moves[i])
         c.turn(moveMap.at(moves[i]));
+        print(c);
         i++;
     }
 }

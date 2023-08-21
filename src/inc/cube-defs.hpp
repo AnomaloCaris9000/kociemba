@@ -129,8 +129,8 @@ class Cubie {
          */
         Cubie(PieceType type, byte_t p, byte_t o):
             m_type(type), 
-            m_placement(p%(type==EDGE?NB_EDGES:NB_CORNERS)), 
-            m_orientation(o%(type==EDGE?2:3))
+            m_placement(p), 
+            m_orientation(o)
         {}
 
         Cubie(): // default constructor
@@ -162,14 +162,14 @@ class Cubie {
          * @note type = Corner => orientation in 0, 1, 2
          * @note type = Edge => orientation in 0, 1 
          */
-        inline byte_t orientation() const {return m_orientation;}
+        inline byte_t orientation() const {return m_orientation%((m_type==CENTER)?1:(m_type==EDGE?2:3));}
 
         /**
          * @brief Placement getter.
          * @return Number in 0..23
          * @note If type = center, then placement is the correspounding facelement.face. 
          */
-        inline byte_t placement() const {return m_placement;}
+        inline byte_t placement() const {return m_placement%((m_type==CENTER)?6:(m_type==EDGE?NB_EDGES:NB_CORNERS));}
 
         bool operator == (Cubie const &c) const
         {
