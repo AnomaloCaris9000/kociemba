@@ -14,16 +14,15 @@ class Cube
 {
     private:
         Coord m_coord;
-        Face m_moveTable[NB_FACE]; 
         Color m_scheme[NB_FACE];
-        Coord m_coordTable[NB_FACE];
+        Coord m_coordTable[NB_FACE*3];
     public:
 
         Cube(); 
 
 
         Color at(Face f, byte_t i, byte_t j) const;
-        Cube& turn(Face f); 
+        Cube& turn(Scramble::Move f); 
         bool isSolved() const; 
 };
 

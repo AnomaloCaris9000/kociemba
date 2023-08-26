@@ -47,18 +47,30 @@ void App::handleEvent(sf::Event const& event)
         break;
     
     case sf::Event::KeyPressed:
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::F))
-            m_cube.turn(rc::F); 
-        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::R))
-            m_cube.turn(rc::R); 
-        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::U))
-            m_cube.turn(rc::U); 
-        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-            m_cube.turn(rc::D); 
-         else if(sf::Keyboard::isKeyPressed(sf::Keyboard::B))
-            m_cube.turn(rc::B); 
-         else if(sf::Keyboard::isKeyPressed(sf::Keyboard::L))
-            m_cube.turn(rc::L); 
+        #define ifKeyPressedTurn(k, m) \
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::k)) m_cube.turn(rc::Scramble::m)
+        ifKeyPressedTurn(A, F); // NOTE: make sens for azety keyboard only.
+        else ifKeyPressedTurn(Z, R);
+        else ifKeyPressedTurn(E, U);
+        else ifKeyPressedTurn(R, B);
+        else ifKeyPressedTurn(T, L);
+        else ifKeyPressedTurn(Y, D);
+
+        else ifKeyPressedTurn(Q, Fp);
+        else ifKeyPressedTurn(S, Rp);
+        else ifKeyPressedTurn(D, Up);
+        else ifKeyPressedTurn(F, Bp);
+        else ifKeyPressedTurn(G, Lp);
+        else ifKeyPressedTurn(H, Dp);
+
+        else ifKeyPressedTurn(W, F2);
+        else ifKeyPressedTurn(X, R2);
+        else ifKeyPressedTurn(C, U2);
+        else ifKeyPressedTurn(V, B2);
+        else ifKeyPressedTurn(B, L2);
+        else ifKeyPressedTurn(N, D2);
+
+        #undef ifKeyPressedTurn
         break;
     
     default:

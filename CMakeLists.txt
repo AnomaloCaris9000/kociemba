@@ -1,9 +1,8 @@
 cmake_minimum_required(VERSION 3.5.0)
 
 # project name
-project(kociemba)
+project(kociemba LANGUAGES CXX)
 
-project(SFML LANGUAGES CXX)
 set(SRCDIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(INCDIR ${SRCDIR}/inc)
 

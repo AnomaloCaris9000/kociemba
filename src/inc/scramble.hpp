@@ -15,10 +15,10 @@ class Scramble
         enum Move {
             U, U2, Up,
             D, D2, Dp,
-            F, F2, Fd,
-            B, B2, Bd,
-            L, L2, Ld,
-            R, R2, Rd
+            F, F2, Fp,
+            B, B2, Bp,
+            L, L2, Lp,
+            R, R2, Rp
         };
 
     private:

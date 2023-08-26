@@ -12,7 +12,7 @@
 #ifndef CORD_HPP
 #define CORD_HPP
 
-#include "cube-defs.hpp"
+#include "scramble.hpp"
 
 namespace rc {
 
@@ -50,10 +50,11 @@ struct Coord
      * @param other The other Coord
      * @return The current instence. 
      */
-    Coord& operator *= (Coord const other);
+    Coord& operator *= (Coord const& other);
 
-    template <Face f> static Coord make(); 
+    template <Scramble::Move M> static Coord make(); 
 };
+
 
 /**
  * @brief Compose two Coords.
@@ -61,7 +62,7 @@ struct Coord
  * @param c1 
  * @return The composition of c0 and c1. 
  */
-Coord operator * (Coord const c0, Coord const c1);
+Coord operator * (Coord const& c0, Coord const& c1);
 
 } // namespace rc
 

@@ -15,17 +15,33 @@ Cube::Cube()
     m_scheme[L] = ORANGE; 
     m_scheme[D] = YELLOW;
 
-    m_coordTable[F] = Coord::make<F>(); 
-    m_coordTable[R] = Coord::make<R>(); 
-    m_coordTable[U] = Coord::make<U>(); 
-    m_coordTable[B] = Coord::make<B>(); 
-    m_coordTable[L] = Coord::make<L>(); 
-    m_coordTable[D] = Coord::make<D>(); 
+    #define fillCoordTable(m) m_coordTable[Scramble::m] = Coord::make<Scramble::m>()
+    fillCoordTable(F);
+    fillCoordTable(R);
+    fillCoordTable(U);
+    fillCoordTable(B);
+    fillCoordTable(L);
+    fillCoordTable(D);
+
+    fillCoordTable(F2);
+    fillCoordTable(R2);
+    fillCoordTable(U2);
+    fillCoordTable(B2);
+    fillCoordTable(L2);
+    fillCoordTable(D2);
+
+    fillCoordTable(Fp);
+    fillCoordTable(Rp);
+    fillCoordTable(Up);
+    fillCoordTable(Bp);
+    fillCoordTable(Lp);
+    fillCoordTable(Dp); 
+    #undef fillCoordTable
 }
 
-Cube& Cube::turn(Face f)
+Cube& Cube::turn(Scramble::Move m)
 {
-    m_coord *= m_coordTable[f]; 
+    m_coord *= m_coordTable[m]; 
     return *this;
 }
 
