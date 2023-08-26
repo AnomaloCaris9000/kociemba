@@ -54,8 +54,8 @@ Coord& Coord::operator *= (Coord const& other)
             cornerO[i] += other.cornerO[cornerP[i]];
             cornerP[i] = other.cornerP[cornerP[i]];
         }
-        edgeP[i] = other.edgeP[edgeP[i]];
         edgeO[i] += other.edgeO[edgeP[i]];
+        edgeP[i] = other.edgeP[edgeP[i]];
     }
     return *this;
 }
@@ -86,7 +86,7 @@ template <>
 Coord Coord::make<Scramble::F>()
 {
     Coord c = Coord(); 
-    cycle4EC(c, {FL, DF, FR, UF}, {DFL, DFR, UFR, UFL}, {2, 1, 2, 1}, true);
+    cycle4EC(c, {FL, DF, FR, UF}, {DFL, DFR, UFR, UFL}, {1, 2, 1, 2}, true);
     return c; 
 }
 
@@ -106,7 +106,7 @@ template <>
 Coord Coord::make<Scramble::R>()
 {
     Coord c = Coord(); 
-    cycle4EC(c, {DR, BR, UR, FR}, {DBR, UBR, UFR, DFR}, {1, 2, 1, 2}, false);
+    cycle4EC(c, {DR, BR, UR, FR}, {DBR, UBR, UFR, DFR}, {2, 1, 2, 1}, false);
     return c;
 }
 
@@ -166,7 +166,7 @@ template <>
 Coord Coord::make<Scramble::B>()
 {
     Coord c = Coord(); ;
-    cycle4EC(c, {UB, BR, DB, BL}, {UBL, UBR, DBR, DBL}, {2, 1, 2, 1}, true);
+    cycle4EC(c, {UB, BR, DB, BL}, {UBL, UBR, DBR, DBL}, {1, 2, 1, 2}, true);
     return c;
 }
 
@@ -186,7 +186,7 @@ template <>
 Coord Coord::make<Scramble::L>()
 {
     Coord c;
-    cycle4EC(c, {UL, BL, DL, FL}, {UFL, UBL, DBL, DFL}, {2, 1, 2, 1}, false);
+    cycle4EC(c, {UL, BL, DL, FL}, {UFL, UBL, DBL, DFL}, {1, 2, 1, 2}, false);
     return c;
 }
 
